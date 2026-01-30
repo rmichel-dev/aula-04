@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpDesk | Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .hero-section { background: linear-gradient(135deg, #6610f2, #0d6efd); color: white; padding: 60px 0; }
+    </style>
+</head>
+<body>
+    <header class="hero-section text-center shadow-sm">
+        <div class="container">
+            <h1 class="display-3 fw-bold">Hello, Django! 🚀</h1>
+            <p class="lead">Seu sistema de HelpDesk agora tem uma interface moderna.</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow border-0">
+                    <div class="card-body p-5">
+                        <h2 class="text-secondary mb-4">Status do Sistema</h2>
+                        
+                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                            <div>
+                                <strong>Sucesso!</strong> O servidor está rodando e os templates estão conectados.
+                            </div>
+                        </div>
+
+                        <p class="text-muted">
+                            Este é um exemplo de como o <strong>MVT</strong> separa as coisas. 
+                            O Python apenas enviou os dados, enquanto o HTML e CSS cuidam de toda a beleza que você está vendo.
+                        </p>
+
+                        <hr>
+
+                        <div class="d-grid gap-2 d-md-block">
+                            <a href="/" class="btn btn-primary btn-lg px-4">Atualizar Página</a>
+                            <a href="/listar" class="btn btn-outline-secondary btn-lg px-4">Lista de chamados</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center py-4 text-muted">
+        <small>&copy; 2026 - Curso Técnico de Desenvolvimento Web</small>
+    </footer>
+
+</body>
+</html>
