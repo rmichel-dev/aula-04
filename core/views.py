@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 # Nossa lista global (Banco de Dados em memória)
@@ -14,16 +14,28 @@ def home(request):
     return render(request, 'core/home.html')
 
 # Ainda retorna HttpResponse
-def criar(request, lab, problema, prioridade):
-    # Criando o dicionário e adicionando à lista
-    novo = {
-        "lab": lab,
-        "problema": problema,
-        "prioridade": prioridade
-    }
-    chamados.append(novo)
-    
-    return HttpResponse(f"✅ Chamado para o {lab} criado com sucesso! <br> <a href='/'>Voltar</a>")
+def novoChamado(request): 
+    # 1. Se o usuário clicou no botão de enviar (POST)
+    if request.method == "POST":
+        # Capturamos os dados do formulário
+        laboratorio = request.POST.get('laboratorio')
+        descricao = request.POST.get('descricao')
+        prioridade = request.POST.get('prioridade')
+        # Salvamos na nossa "base de dados"
+        print(f"Recebido: {laboratorio}, {descricao}, {prioridade}") 
+
+        chamados.append({
+            "lab": laboratorio,
+            "problema": descricao,
+            "prioridade": prioridade
+        })
+
+        # 2. Redireciona de volta para a lista após salvar
+        return redirect('/listar')
+
+    # 3. Se o usuário apenas acessou a página (GET)
+    return render(request, 'core/novo_chamado.html')
+   
 
 # Ainda retorna HttpResponse
 def fechar(request, indice):

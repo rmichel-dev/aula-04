@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import home, listar, criar, fechar
+from core.views import home, listar, novoChamado, fechar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +24,6 @@ urlpatterns = [
     path('', home),  # Deixando vazio '', a página aparece na raiz do site
     path('listar', listar),
 
-    path('criar/<str:lab>/<str:problema>/<str:prioridade>/', criar),
+    path('novo-chamado', novoChamado),
     path('fechar/<int:indice>', fechar),
 ]
