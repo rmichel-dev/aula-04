@@ -72,3 +72,10 @@ def nova_categoria(request):
         # salvar meus dados
         return redirect('/listar-categorias')
     return render(request, 'core/nova_categoria.html')
+
+def excluir_categoria(request, id):
+    for categoria in categorias:
+        if categoria["id"] == id:
+            categorias.remove(categoria)
+            break
+    return redirect('/listar-categorias')

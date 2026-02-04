@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core.views import home, listar_chamados, novo_chamado, fechar
-from core.views import listar_categorias, nova_categoria
+from core.views import listar_categorias, nova_categoria, excluir_categoria
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +29,6 @@ urlpatterns = [
     path('fechar/<int:id>', fechar, name='fechar-chamado'),
 
     path('listar-categorias', listar_categorias),
-    path('nova-categoria', nova_categoria)
+    path('nova-categoria', nova_categoria),
+    path('exclur-categoria/<int:id>', excluir_categoria, name='excluir-categoria'),
 ]

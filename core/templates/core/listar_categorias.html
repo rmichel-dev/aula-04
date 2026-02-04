@@ -6,6 +6,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">nome</th>
+      <th scope="col">ações</th>
     </tr>
   </thead>
   <tbody>
@@ -13,6 +14,8 @@
     <tr>
       <th>{{ categoria.id }}</th>
       <td>{{ categoria.nome }}</td>
+      <td>
+        <a href="{% url 'excluir-categoria' categoria.id %}" class="btn btn-danger btn-sm">Excluir</a>
     </tr>
     {% endfor %}
   </tbody>
