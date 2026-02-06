@@ -1,0 +1,26 @@
+{% extends "core/base.html" %}
+
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Criação de categorias</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            <!-- Informação especial do formulário de nova categoria -->
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Nome da Categoria:</label>
+                <input type="text" name="nome" class="form-control" placeholder="Ex: Hardware" required>
+            </div>
+            <!-- fim da Informação especial  -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success btn-lg">Salvar Categoria</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

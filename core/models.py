@@ -5,7 +5,7 @@ class Chamado(models.Model):
     laboratorio = models.CharField(max_length=100)
     
     # Texto longo (sem limite de letras)
-    problema = models.TextField()
+    descricao = models.TextField()
     
     # Escolhas pré-definidas
     OPCOES_PRIORIDADE = [
@@ -20,3 +20,15 @@ class Chamado(models.Model):
 
     def __str__(self):
         return f"{self.laboratorio} - {self.prioridade}"
+    
+
+    
+class Categoria(models.Model):
+    # Texto curto (max 100 letras)
+    nome = models.CharField(max_length=100)
+    
+    # Data e Hora automática no momento da criação
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.nome}"
