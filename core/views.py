@@ -37,6 +37,7 @@ def listar_chamados(request):
 
 
 # Novas views para categorias
+# @login_required
 def listar_categorias(request):
     categorias = Categoria.objects.all() 
     return render(request, 'core/listar_categorias.html', {"categorias": categorias})
