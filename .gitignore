@@ -1,1 +1,5 @@
 setup/__pycache__/*
+core/__pycache__/*
+core/migrations/*
+setup/__pycache__/*
+db.sqlite3
