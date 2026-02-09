@@ -1,6 +1,18 @@
 from django.db import models
  
+class Categoria(models.Model):
+    # Texto curto (max 100 letras)
+    nome = models.CharField(max_length=100)
+    
+    # Data e Hora automática no momento da criação
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.nome}"
+
+
 class Chamado(models.Model):
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     # Texto curto (max 100 letras)
     laboratorio = models.CharField(max_length=100)
     
@@ -21,16 +33,6 @@ class Chamado(models.Model):
     def __str__(self):
         return f"{self.laboratorio} - {self.prioridade}"
 
-class Categoria(models.Model):
-    # Texto curto (max 100 letras)
-    nome = models.CharField(max_length=100)
-    
-    # Data e Hora automática no momento da criação
-    data_criacao = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.nome}"
-    
 class Equipamento(models.Model):
     descricao = models.CharField(max_length=250)
     tipo = models.CharField(max_length=50)
