@@ -20,9 +20,7 @@ class Chamado(models.Model):
 
     def __str__(self):
         return f"{self.laboratorio} - {self.prioridade}"
-    
 
-    
 class Categoria(models.Model):
     # Texto curto (max 100 letras)
     nome = models.CharField(max_length=100)
@@ -49,4 +47,23 @@ class Equipamento(models.Model):
     data_criacao = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.descricao} - {self.tipo}"
+        return f"Meu equipamento: {self.descricao} - {self.tipo}"
+    
+class Pessoa(models.Model):
+    cpf = models.IntegerField()
+    nome = models.CharField(max_length=100)
+    email = models.EmailField()
+    telefone = models.CharField(max_length=20)
+    endereco = models.CharField(max_length=200)
+    data_nascimento = models.DateField()
+    genero = models.CharField(max_length=20)
+    profissao = models.CharField(max_length=100)
+    empresa = models.CharField(max_length=100)
+    cargo = models.CharField(max_length=100)
+    ativo = models.BooleanField(default=True)
+
+        # Data e Hora automática no momento da criação
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.nome} - {self.cpf}"

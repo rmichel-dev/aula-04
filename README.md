@@ -136,3 +136,25 @@ deactivate
 ```
 
 ---
+
+# Aula 10
+
+### preparar as migrações
+```powershell
+python .\manage.py makemigrations
+```
+
+### Aplicar as migrações
+```powershell
+python .\manage.py migrate
+```
+
+### Aplicar as migrações
+```powershell
+python .\manage.py migrate
+```
+
+### Criar um superusuário
+```powershell
+python .\manage.py createsuperuser
+```
