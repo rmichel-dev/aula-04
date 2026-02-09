@@ -13,13 +13,28 @@ def novo_chamado(request):
         laboratorio = request.POST.get('laboratorio')
         descricao = request.POST.get('descricao')
         prioridade = request.POST.get('prioridade')
+        id_categoria = request.POST.get('categoria')
 
-        Chamado.objects.create(laboratorio=laboratorio, descricao=descricao, prioridade=prioridade)
+        # Buscamos o objeto real da categoria no banco
+        categoria_selecionada = Categoria.objects.get(id=id_categoria)
+
+        Chamado.objects.create(
+            laboratorio=laboratorio, 
+            descricao=descricao, 
+            prioridade=prioridade,
+            categoria=categoria_selecionada # Passamos o objeto, não o texto!
+        )
         return redirect('/listar-chamados')
+
+
+ 
+
+
 
     if request.method == "GET":
         print("chegou um get")
-        return render(request, 'core/novo_chamado.html')
+        categorias = Categoria.objects.all()
+        return render(request, 'core/novo_chamado.html', {'categorias': categorias})
 
 # Ainda retorna HttpResponse
 def fechar_chamado(request, id):
