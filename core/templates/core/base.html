@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,41 +8,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HelpDesk | Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .hero-section {
-            background: linear-gradient(135deg, #6610f2, #0d6efd);
-            color: white;
-            padding: 60px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
 </head>
 
 <body>
-    <header class="hero-section text-center shadow-sm">
-        <div class="container">
-            <h1 class="display-3 fw-bold">Hello, Senac! 🚀</h1>
-            <p class="lead">Seu sistema de HelpDesk agora tem uma interface moderna.</p>
+    <div class="row g-0 min-vh-100">
+
+        <!-- Sidebar -->
+        <div class="col-12 col-md-3 bg-primary text-white d-flex align-items-center justify-content-center">
+            <div class="text-center p-4">
+                <img src="{% static 'core/img/logo.png' %}" alt="Logo" class="img-fluid mb-3" style="max-width: 140px;">
+                <h5 class="fw-bold">HelpDesk</h5>
+                <small>Sistema Interno</small>
+            </div>
         </div>
-    </header>
 
-    {% block content %}
-    <div>BEM-VINDO do bloco content</div>
-    {% endblock %}
+        <!-- Conteúdo principal -->
+        <div class="col-12 col-md-9 d-flex align-items-center">
+            <header class="w-100 text-center py-5 px-3">
+                <h1 class="display-4 fw-bold mb-3">Hello, Senac!</h1>
+                <p class="lead text-muted mb-4">
+                    Seu sistema de HelpDesk agora tem uma interface moderna.
+                </p>
 
-    {%block rodape %}
-    <div class="text-center py-4 text-muted">
-        <small>&copy; 2026 - Curso Técnico de Desenvolvimento Web - Rodapé Personalizado</small>
+                {% block content %}
+                <div>BEM-VINDO do bloco content</div>
+                {% endblock %}
+
+                {%block rodape %}
+                <div class="text-center py-4 text-muted">
+                    <small>&copy; 2026 - Curso Técnico de Desenvolvimento Web - Rodapé Personalizado</small>
+                </div>
+                {% endblock %}
+            </header>
+        </div>
+
     </div>
-    {% endblock %}
-
-
-    <!-- Aqui eu quero que apareça meu conteudo  -->
-
-
 </body>
 
 </html>
