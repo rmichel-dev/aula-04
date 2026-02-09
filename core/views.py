@@ -26,11 +26,6 @@ def novo_chamado(request):
         )
         return redirect('/listar-chamados')
 
-
- 
-
-
-
     if request.method == "GET":
         print("chegou um get")
         categorias = Categoria.objects.all()
@@ -47,8 +42,27 @@ def fechar_chamado(request, id):
 def listar_chamados(request):
     # Busca TODOS os registros do banco de dados
     chamados = Chamado.objects.all() 
-    return render(request, 'core/listar-chamados.html', {"chamados": chamados})
+    return render(request, 'core/listar_chamados.html', {"chamados": chamados})
 
+#@login_required
+def editar_chamados(request, id):
+    # Busca TODOS os registros do banco de dados
+    chamado = Chamado.objects.get(id=id)
+    categorias = Categoria.objects.all()
+
+    if request.method == "POST":
+        # 2. Atualiza os campos com o que veio do formulário
+        chamado.laboratorio = request.POST.get('laboratorio')
+        chamado.descricao = request.POST.get('descricao')
+        chamado.prioridade = request.POST.get('prioridade')
+        id_cat = request.POST.get('categoria')
+
+        chamado.categoria = Categoria.objects.get(id=id_cat)
+        
+        # 3. Salva as alterações
+        chamado.save()
+        return redirect('/listar-chamados')
+    return render(request, 'core/editar_chamado.html', {'categorias': categorias, 'chamado': chamado,})
 
 
 # Novas views para categorias

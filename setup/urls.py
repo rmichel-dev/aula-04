@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import home, listar_chamados, novo_chamado, fechar_chamado
+from core.views import home, listar_chamados, novo_chamado, fechar_chamado, editar_chamados
 from core.views import listar_categorias, nova_categoria, excluir_categoria
 
 urlpatterns = [
@@ -26,6 +26,7 @@ urlpatterns = [
     path('', home),  # Deixando vazio '', a página aparece na raiz do site
 
     path('listar-chamados', listar_chamados),
+    path('editar-chamado/<int:id>', editar_chamados, name='editar-chamado'),
     path('novo-chamado', novo_chamado),
     path('fechar-chamado/<int:id>', fechar_chamado, name='fechar-chamado'),
 

@@ -1,0 +1,60 @@
+{% extends "core/base.html" %}
+
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Abertura de Chamado Técnico</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Laboratório:</label>
+                <input type="text" name="laboratorio" class="form-control" placeholder="Ex: Laboratório 01"
+                    value="{{ chamado.laboratorio }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Descrição:</label>
+                <input type="text" name="descricao" class="form-control" placeholder="Descreva o defeito"
+                    value="{{ chamado.descricao }}" required>
+            </div>
+
+            
+            <div class="mb-3">
+                <label class="form-label fw-bold">Prioridade:</label>
+                <select name="prioridade" class="form-select">
+                    <option value="Baixa" {% if chamado.prioridade == 'Baixa' %} selected {% endif %}>
+                        Baixa
+                    </option>
+
+                    <option value="Média" {% if chamado.prioridade == 'Média' %} selected {% endif %}>
+                        Média
+                    </option>
+
+                    <option value="Alta" {% if chamado.prioridade == 'Alta' %} selected {% endif %}>
+                        Alta
+                    </option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Categoria:</label>
+                <select name="categoria" class="form-select">
+                    {% for cat in categorias %}
+                    <option value="{{ cat.id }}" {% if cat.id == chamado.categoria.id %} selected {% endif %}>
+                        {{ cat.nome }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success btn-lg">Salvar Chamado</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
