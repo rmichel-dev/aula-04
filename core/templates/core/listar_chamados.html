@@ -30,11 +30,17 @@
                     {% endif %}
                 </td>
                 <td>
-                    <a href="{% url 'editar-chamado' chamado.id %}" class="btn btn-sm btn-outline-primary">
-                        Editar
-                    </a>
-                    <a href="{% url 'fechar-chamado' chamado.id %}" class="btn btn-sm btn-outline-danger"
-                        onclick="return confirm('Tem certeza que deseja apagar?')">Excluir</a>
+                        <a href="{% url 'editar-chamado' chamado.id %}" class="btn btn-sm btn-outline-primary">
+                            Editar
+                        </a>
+                       
+                    
+                   <form method="post" action="{% url 'fechar-chamado' chamado.pk %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                            🗑 Fechar
+                        </button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}

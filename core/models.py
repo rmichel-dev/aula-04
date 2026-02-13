@@ -1,4 +1,10 @@
 from django.db import models
+
+# Chamado
+#  relação com categoria (chave estrangeira)
+#  relação com equipamento (chave estrangeira)
+#  relação com pessoa (chave estrangeira)
+
  
 class Categoria(models.Model):
     # Texto curto (max 100 letras)
@@ -12,12 +18,13 @@ class Categoria(models.Model):
 
 
 class Chamado(models.Model):
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
+    equipamento = models.ForeignKey('Equipamento', on_delete=models.SET_NULL, null=True)
     # Texto curto (max 100 letras)
     laboratorio = models.CharField(max_length=100)
     
-    # Texto longo (sem limite de letras)
-    descricao = models.TextField()
+   
+    descricao = models.TextField()  # Texto longo (sem limite de letras)
     
     # Escolhas pré-definidas
     OPCOES_PRIORIDADE = [

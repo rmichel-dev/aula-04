@@ -12,4 +12,12 @@ h1 {
     color: white;
     padding: 60px 0;
 }
-   
+
+.page-header {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+    justify-items: right;
+    padding-right: 50px;
+    max-height: 124px;
+}
