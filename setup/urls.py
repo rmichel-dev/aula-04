@@ -19,7 +19,7 @@ from django.urls import path
 from core.views import home, listar_chamados, novo_chamado, fechar_chamado, editar_chamado
 from core.views import editar_categoria
 from core.views import ListarCategoriasView, NovaCategoriaView, ExcluirCategoriaView
-
+from core.views import api_chamados
 urlpatterns = [
     # Exemplo de uso com FBV (Function Based View)
     path('admin/', admin.site.urls),
@@ -36,4 +36,6 @@ urlpatterns = [
     path('listar-categorias', ListarCategoriasView.as_view(), name='listar-categorias'),
     path('nova-categoria', NovaCategoriaView.as_view(), name='nova-categoria'),
     path('excluir-categoria/<int:pk>', ExcluirCategoriaView.as_view(), name='excluir-categoria'),
+
+    path('api/chamados/', api_chamados, name='listar-chamados-api'),
 ]

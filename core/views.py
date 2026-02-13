@@ -6,7 +6,9 @@ from django.contrib.auth.decorators import permission_required
 from django.views.generic import CreateView, ListView, DeleteView, View
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
+from django.contrib import messages
 
+from django.http import JsonResponse
 
 def home(request):
     return render(request, "core/home.html" ) 
@@ -31,6 +33,8 @@ def novo_chamado(request):
             prioridade=prioridade,
             categoria=categoria_selecionada # Passamos o objeto, não o texto!
         )
+        
+        messages.success(request, 'Chamado criado com sucesso!')
         return redirect('/listar-chamados')
 
     if request.method == "GET":
@@ -42,10 +46,13 @@ def novo_chamado(request):
 # recebemos o id do chamado que queremos fechar, 
 # buscamos o chamado no banco de dados usando esse id 
 # depois chamamos o método delete() para remover o registro do banco.
+
+
+from django.contrib import messages
 def fechar_chamado(request, id):
     chamado = Chamado.objects.get(id=id)
     chamado.delete()
-    print(f"Fechando chamado {chamado.id} - {chamado.descricao}")
+    messages.success(request, 'Chamado fechado com sucesso')
     return redirect('/listar-chamados')
 
 
@@ -145,3 +152,17 @@ class ExcluirCategoriaView(LoginRequiredMixin, PermissionRequiredMixin, View):
         categoria = get_object_or_404(Categoria, pk=pk)
         categoria.delete()
         return redirect(self.success_url)
+    
+
+def api_chamados(request):
+    chamados = Chamado.objects.all()
+    data = []
+    for chamado in chamados:
+        data.append({
+            'id': chamado.id,
+            'laboratorio': chamado.laboratorio,
+            'descricao': chamado.descricao,
+            'prioridade': chamado.prioridade,
+            'categoria': chamado.categoria.nome,
+        })
+    return JsonResponse(data, safe=False)   
